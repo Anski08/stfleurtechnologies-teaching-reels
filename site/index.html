@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EduLab Studio &mdash; Teaching Reels</title>
+    <meta
+      name="description"
+      content="Short-form math explainers for grades 4-5. Built with code, so every fraction model is mathematically exact."
+    />
+    <meta property="og:title" content="EduLab Studio - Teaching Reels" />
+    <meta
+      property="og:description"
+      content="Short-form math explainers for grades 4-5, generated with Remotion."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow" data-handle></p>
+        <h1 data-brand>EduLab Studio</h1>
+        <p class="tagline" data-tagline></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#reels">Watch the reels</a>
+          <a class="btn" data-repo-link target="_blank" rel="noopener">View the source</a>
+        </div>
+        <ul class="facts">
+          <li><strong>1080&times;1920</strong><span>vertical, 30fps</span></li>
+          <li><strong>Exact</strong><span>geometry, not stock art</span></li>
+          <li><strong>Grades 4&ndash;5</strong><span>classroom ready</span></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section id="reels">
+        <h2 class="section-title">The reels</h2>
+        <p class="section-note">
+          Tap any card to play. Every video is also downloadable from the
+          <a data-releases-link target="_blank" rel="noopener">releases page</a>.
+        </p>
+        <div class="grid" id="grid"></div>
+      </section>
+
+      <section id="how">
+        <h2 class="section-title">How these are made</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>The math is computed</h3>
+            <p>
+              Pie wedges and bar models derive their geometry from the part
+              count, so thirds are exactly 120&deg;. That is why a half and
+              three sixths shade to identical widths on screen.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Strokes draw themselves</h3>
+            <p>
+              Setting <code>pathLength=1</code> on an SVG shape normalises it, so
+              a 0&rarr;1 value maps straight onto how much of the stroke has been
+              laid down. No path measuring, works on any shape.
+            </p>
+          </article>
+          <article class="card">
+            <h3>One source, many cuts</h3>
+            <p>
+              A pace context retimes a whole scene without touching a single
+              keyframe. The 60-second narrated cut and the 41-second silent cut
+              share every component.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap footer-inner">
+        <p data-brand-footer>EduLab Studio</p>
+        <p class="muted">
+          Built with <a href="https://remotion.dev" target="_blank" rel="noopener">Remotion</a>.
+          Source code MIT licensed.
+        </p>
+      </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+      <div class="lightbox-inner" id="lightboxInner"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

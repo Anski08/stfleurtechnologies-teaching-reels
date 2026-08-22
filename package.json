@@ -1,0 +1,30 @@
+{
+  "name": "fraction-reel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render FractionReel out/fraction-reel.mp4",
+    "render:gif": "remotion render FractionReel out/fraction-reel.gif --codec=gif --every-nth-frame=2",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@remotion/cli": "4.0.509",
+    "@remotion/google-fonts": "4.0.509",
+    "@remotion/renderer": "4.0.509",
+    "@remotion/transitions": "4.0.509",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remotion": "4.0.509"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "typescript": "~5.9.3"
+  }
+}

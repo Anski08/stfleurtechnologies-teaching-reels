@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+
+# rendered video output - these live in GitHub Releases, not in git.
+# Committing them would put every re-render permanently in history.
+out/
+
+# vendored skill/reference docs pulled in locally
+.claude/
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# remotion
+.remotion/

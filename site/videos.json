@@ -1,0 +1,61 @@
+{
+  "brand": "EduLab Studio",
+  "tagline": "Short math explainers that actually stick.",
+  "handle": "@Stfleurtechnologies",
+  "repo": "Anski08/stfleurtechnologies-teaching-reels",
+  "releaseTag": "v1.0.0",
+  "videos": [
+    {
+      "id": "fraction-reel-v3-voiceover",
+      "title": "The Butterfly Method",
+      "subtitle": "Voiceover cut",
+      "topic": "Adding fractions, unlike denominators",
+      "grade": "Grades 4-5",
+      "duration": "1:00",
+      "file": "fraction-reel-v3-voiceover.mp4",
+      "poster": "posters/fraction-reel-v3-voiceover.jpg",
+      "youtubeId": "",
+      "featured": true,
+      "blurb": "Cross-multiplication taught as a butterfly, drawn stroke by stroke on notebook paper. Paced for narration, with a closing note on when the shortcut still needs simplifying."
+    },
+    {
+      "id": "fraction-reel-v3",
+      "title": "The Butterfly Method",
+      "subtitle": "Fast cut",
+      "topic": "Adding fractions, unlike denominators",
+      "grade": "Grades 4-5",
+      "duration": "0:41",
+      "file": "fraction-reel-v3.mp4",
+      "poster": "posters/fraction-reel-v3.jpg",
+      "youtubeId": "",
+      "featured": false,
+      "blurb": "The same lesson at scroll speed. Silent, built to stop a thumb in the first two seconds."
+    },
+    {
+      "id": "fraction-reel-v2",
+      "title": "Find the Common Denominator",
+      "subtitle": "Illustrated",
+      "topic": "Adding fractions, unlike denominators",
+      "grade": "Grades 4-5",
+      "duration": "0:41",
+      "file": "fraction-reel-v2.mp4",
+      "poster": "posters/fraction-reel-v2.jpg",
+      "youtubeId": "",
+      "featured": false,
+      "blurb": "The standard LCD method with exact bar models. One half and three sixths shade to identical widths - the frame that makes equivalence click."
+    },
+    {
+      "id": "fraction-reel",
+      "title": "Find the Common Denominator",
+      "subtitle": "Original",
+      "topic": "Adding fractions, unlike denominators",
+      "grade": "Grades 4-5",
+      "duration": "0:41",
+      "file": "fraction-reel.mp4",
+      "poster": "posters/fraction-reel.jpg",
+      "youtubeId": "",
+      "featured": false,
+      "blurb": "The first cut. Pure code-drawn type and geometry, no illustrations."
+    }
+  ]
+}
