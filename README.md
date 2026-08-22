@@ -146,12 +146,26 @@ so every scene lands at a uniform 2.6 words/sec.
 
 ## Automation
 
-- **`.github/workflows/render.yml`** &mdash; renders all four compositions.
-  Runs on demand, and on a tagged push it attaches the MP4s to the Release.
+- **`.github/workflows/render.yml`** &mdash; renders all four compositions on
+  a Linux runner. Manual trigger only (`workflow_dispatch`); it exists to prove
+  the project still builds from a clean checkout, and uploads the MP4s as a
+  build artifact.
 - **`.github/workflows/pages.yml`** &mdash; deploys `site/` to GitHub Pages.
 
 Rendered video is never committed. It ships as Release assets, which keeps the
 repository small and its history clean.
+
+**Publish release assets from a local render, not from CI.**
+`softprops/action-gh-release` deletes every existing asset before re-uploading;
+one failed upload leaves the release incomplete. That happened on `v1.0.0` and
+silently dropped `fraction-reel-v3.mp4`. Upload explicitly instead:
+
+```bash
+gh release upload v1.0.0 out/fraction-reel-v3.mp4 --clobber
+```
+
+Release assets serve HTTP `206 Partial Content`, so the site can stream them
+directly into a `<video>` tag without downloading the whole file first.
 
 ## Adding a new video
 
@@ -159,7 +173,8 @@ repository small and its history clean.
 2. Compose them in `src/FractionReelVN.tsx` with a `TransitionSeries`.
 3. Register the composition in `src/Root.tsx`.
 4. Add an entry to `site/videos.json`.
-5. Tag a release; the workflow renders and attaches the file.
+5. Render locally (`npm run render`) and upload to the release:
+   `gh release upload <tag> out/<file>.mp4 --clobber`
 
 ## Licence
 
