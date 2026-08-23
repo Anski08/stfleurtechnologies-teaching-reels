@@ -1,0 +1,28 @@
+{
+  "title": "Probability Challenge",
+  "question": "Pick 2 marbles without putting the first one back. What is the chance of getting 1 red and 1 blue?",
+  "bagContents": {"red": 3, "blue": 2},
+  "total": 5,
+  "afterOnePick": 4,
+  "commonWrongAnswer": "3/10",
+  "answer": "3/5",
+  "paths": [
+    {
+      "id": "red-first",
+      "label": "Red, then blue",
+      "first": {"colour": "red", "top": 3, "bottom": 5},
+      "second": {"colour": "blue", "top": 2, "bottom": 4},
+      "product": {"top": 6, "bottom": 20}
+    },
+    {
+      "id": "blue-first",
+      "label": "Blue, then red",
+      "first": {"colour": "blue", "top": 2, "bottom": 5},
+      "second": {"colour": "red", "top": 3, "bottom": 4},
+      "product": {"top": 6, "bottom": 20}
+    }
+  ],
+  "sum": {"top": 12, "bottom": 20},
+  "simplified": {"top": 3, "bottom": 5},
+  "simplifyBy": 4
+}

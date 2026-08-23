@@ -18,6 +18,15 @@ import {V2AddUp} from './scenes-v2/V2AddUp';
 import {V2Recap} from './scenes-v2/V2Recap';
 import {FractionReelV3} from './FractionReelV3';
 import {FractionReelV3VO} from './FractionReelV3VO';
+import {ProbabilityReel} from './ProbabilityReel';
+import {ProbabilityReelHook} from './ProbabilityReelHook';
+import {P0Trap} from './scenes-prob/P0Trap';
+import {P1Decode} from './scenes-prob/P1Decode';
+import {P2Shrink} from './scenes-prob/P2Shrink';
+import {P3PathRed} from './scenes-prob/P3PathRed';
+import {P4PathBlue} from './scenes-prob/P4PathBlue';
+import {P5Add} from './scenes-prob/P5Add';
+import {P6Answer} from './scenes-prob/P6Answer';
 import {V3ButterflyProof} from './scenes-v3/V3ButterflyProof';
 import {V3Hook} from './scenes-v3/V3Hook';
 import {V3MeetButterfly} from './scenes-v3/V3MeetButterfly';
@@ -65,6 +74,83 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1920}
       />
+
+      <Composition
+        id="ProbabilityReel"
+        component={ProbabilityReel}
+        durationInFrames={2020}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+
+      <Composition
+        id="ProbabilityReelHook"
+        component={ProbabilityReelHook}
+        durationInFrames={2214}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+
+      <Folder name="Scenes-Probability">
+        <Composition
+          id="P0Trap"
+          component={P0Trap}
+          durationInFrames={230}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="P1Decode"
+          component={P1Decode}
+          durationInFrames={520}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="P2Shrink"
+          component={P2Shrink}
+          durationInFrames={405}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="P3PathRed"
+          component={P3PathRed}
+          durationInFrames={315}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="P4PathBlue"
+          component={P4PathBlue}
+          durationInFrames={290}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="P5Add"
+          component={P5Add}
+          durationInFrames={355}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="P6Answer"
+          component={P6Answer}
+          durationInFrames={315}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+      </Folder>
 
       <Folder name="Scenes">
         <Composition

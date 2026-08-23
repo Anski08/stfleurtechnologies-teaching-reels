@@ -3,8 +3,34 @@
   "tagline": "Short math explainers that actually stick.",
   "handle": "@Stfleurtechnologies",
   "repo": "Anski08/stfleurtechnologies-teaching-reels",
-  "releaseTag": "v1.0.0",
+  "releaseTag": "v1.1.0",
   "videos": [
+    {
+      "id": "probability-reel",
+      "title": "Two Marbles, No Replacement",
+      "subtitle": "Straight cut",
+      "topic": "Probability without replacement",
+      "grade": "Grades 5-7",
+      "duration": "1:07",
+      "file": "probability-reel.mp4",
+      "poster": "posters/probability-reel.jpg",
+      "youtubeId": "",
+      "featured": true,
+      "blurb": "Opens on the exam wording and takes it apart phrase by phrase, then shows the bag physically drop from 5 marbles to 4 before any arithmetic happens. Both orders are counted, because both count."
+    },
+    {
+      "id": "probability-reel-hook",
+      "title": "Two Marbles, No Replacement",
+      "subtitle": "Error-first cut",
+      "topic": "Probability without replacement",
+      "grade": "Grades 5-7",
+      "duration": "1:14",
+      "file": "probability-reel-hook.mp4",
+      "poster": "posters/probability-reel-hook.jpg",
+      "youtubeId": "",
+      "featured": false,
+      "blurb": "The same lesson, but it names the wrong answer out loud first. 3/10 is not a random distractor - it is exactly what you get by solving one path correctly and stopping. Running as an A/B against the straight cut."
+    },
     {
       "id": "fraction-reel-v3-voiceover",
       "title": "The Butterfly Method",
@@ -15,7 +41,7 @@
       "file": "fraction-reel-v3-voiceover.mp4",
       "poster": "posters/fraction-reel-v3-voiceover.jpg",
       "youtubeId": "",
-      "featured": true,
+      "featured": false,
       "blurb": "Cross-multiplication taught as a butterfly, drawn stroke by stroke on notebook paper. Paced for narration, with a closing note on when the shortcut still needs simplifying."
     },
     {

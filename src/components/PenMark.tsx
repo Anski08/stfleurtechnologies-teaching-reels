@@ -15,6 +15,42 @@ const PATHS: Record<PenMarkVariant, string[]> = {
   arrow: ['M 34 200 Q 128 60 214 96', 'M 214 96 L 176 78', 'M 214 96 L 190 136'],
 };
 
+/**
+ * A hand-drawn lasso sized to whatever it is wrapping. The `circle` variant of
+ * PenMark is fixed-aspect, so using it around a tall stacked fraction either
+ * clipped the denominator or swallowed the neighbouring operator. This takes
+ * explicit width and height and draws an ellipse to match.
+ *
+ * Place it absolutely inside a position:relative wrapper around the target,
+ * with negative inset equal to the padding you want around it.
+ */
+export const PenEllipse: React.FC<{
+  width: number;
+  height: number;
+  progress: number;
+  color?: string;
+  strokeWidth?: number;
+  /** Slight tilt reads as handwritten rather than printed. */
+  rotate?: number;
+}> = ({width, height, progress, color = '#E11D48', strokeWidth = 11, rotate = -4}) => (
+  <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} style={{overflow: 'visible'}}>
+    <ellipse
+      cx={width / 2}
+      cy={height / 2}
+      rx={width / 2 - strokeWidth}
+      ry={height / 2 - strokeWidth}
+      fill="none"
+      stroke={color}
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      pathLength={1}
+      strokeDasharray={1}
+      strokeDashoffset={1 - Math.min(1, Math.max(0, progress))}
+      transform={`rotate(${rotate} ${width / 2} ${height / 2})`}
+    />
+  </svg>
+);
+
 export const PenMark: React.FC<{
   variant: PenMarkVariant;
   progress: number;

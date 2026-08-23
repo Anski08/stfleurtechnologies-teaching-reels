@@ -1,0 +1,15 @@
+Add probability reel: two marbles without replacement
+
+Two cuts of the same lesson, built as a controlled A/B. Both open on the
+exam wording verbatim and highlight it phrase by phrase before paraphrasing,
+because a student who has only seen "no putting back" will not recognise
+"without replacement" on a test. The condensed line then persists as a banner
+so the question never leaves the frame.
+
+The bag is a cutaway SVG and visibly drops from 5 marbles to 4 on screen
+before any denominator changes - that transition is the single thing the
+video exists to teach.
+
+The hook cut adds one 230-frame beat naming 3/10 as the common wrong answer.
+That is not a random distractor: it is exactly 3/5 x 2/4, what you get by
+solving one path correctly and stopping.
