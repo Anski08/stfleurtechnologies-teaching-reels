@@ -4,13 +4,30 @@
  * Playback source, in priority order:
  *   1. YouTube embed, when `youtubeId` is set - preferred, since embed
  *      watch time counts toward the channel.
- *   2. The MP4 attached to the GitHub Release, streamed directly.
+ *   2. The MP4 committed under site/videos/, served by GitHub Pages.
  *
- * Adding a video is a JSON edit; no markup changes required.
+ * Playback and download deliberately point at two different copies of the
+ * same file:
+ *
+ *   - Pages serves site/videos/*.mp4 as `video/mp4`, so <video> can play it
+ *     inline.
+ *   - GitHub Release assets are served as `application/octet-stream` with
+ *     `Content-Disposition: attachment` and `X-Content-Type-Options: nosniff`.
+ *     No browser will play that in a <video> element - it downloads instead.
+ *     That behaviour is exactly what the download link wants, and exactly
+ *     what playback cannot use.
+ *
+ * A 206 from a Release asset only proves range requests work; it says nothing
+ * about whether the MIME type is playable. Do not "simplify" this back to a
+ * single URL.
+ *
+ * Adding a video is a JSON edit plus dropping the MP4 in site/videos/.
  */
 
 const RELEASE_BASE = (repo, tag) =>
   `https://github.com/${repo}/releases/download/${tag}/`;
+
+const PLAYBACK_BASE = 'videos/';
 
 const el = (tag, props = {}, ...kids) => {
   const node = Object.assign(document.createElement(tag), props);
@@ -22,7 +39,7 @@ const lightbox = document.getElementById('lightbox');
 const lightboxInner = document.getElementById('lightboxInner');
 let lastFocused = null;
 
-function openPlayer(video, downloadUrl) {
+function openPlayer(video, playbackUrl) {
   lastFocused = document.activeElement;
   lightboxInner.replaceChildren(
     video.youtubeId
@@ -33,7 +50,7 @@ function openPlayer(video, downloadUrl) {
           title: video.title,
         })
       : el('video', {
-          src: downloadUrl,
+          src: playbackUrl,
           controls: true,
           autoplay: true,
           playsInline: true,
@@ -63,6 +80,7 @@ document.addEventListener('keydown', (e) => {
 
 function card(video, base) {
   const downloadUrl = base + video.file;
+  const playbackUrl = PLAYBACK_BASE + video.file;
 
   const thumb = el(
     'div',
@@ -99,7 +117,7 @@ function card(video, base) {
     el('p', {}, video.blurb)
   );
 
-  button.addEventListener('click', () => openPlayer(video, downloadUrl));
+  button.addEventListener('click', () => openPlayer(video, playbackUrl));
 
   return el(
     'div',

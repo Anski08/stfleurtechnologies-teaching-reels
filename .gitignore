@@ -1,8 +1,10 @@
 # dependencies
 node_modules/
 
-# rendered video output - these live in GitHub Releases, not in git.
-# Committing them would put every re-render permanently in history.
+# rendered video output - the working directory for renders.
+# Committing this would put every re-render permanently in history.
+# Playback copies live in site/videos/ (Pages needs to serve them itself);
+# distribution copies live in GitHub Releases.
 out/
 
 # vendored skill/reference docs pulled in locally

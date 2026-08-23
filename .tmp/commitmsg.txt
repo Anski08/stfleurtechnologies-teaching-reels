@@ -1,15 +1,24 @@
-Add probability reel: two marbles without replacement
+Serve playback copies from Pages, not from Release assets
 
-Two cuts of the same lesson, built as a controlled A/B. Both open on the
-exam wording verbatim and highlight it phrase by phrase before paraphrasing,
-because a student who has only seen "no putting back" will not recognise
-"without replacement" on a test. The condensed line then persists as a banner
-so the question never leaves the frame.
+The gallery pointed <video src> at the GitHub Release asset. Release assets
+are served as:
 
-The bag is a cutaway SVG and visibly drops from 5 marbles to 4 on screen
-before any denominator changes - that transition is the single thing the
-video exists to teach.
+  Content-Type: application/octet-stream
+  Content-Disposition: attachment; filename=...
+  X-Content-Type-Options: nosniff
 
-The hook cut adds one 230-frame beat naming 3/10 as the common wrong answer.
-That is not a random distractor: it is exactly 3/5 x 2/4, what you get by
-solving one path correctly and stopping.
+No browser will play that inline. nosniff blocks MIME sniffing and
+octet-stream is not a playable video type, so every card opened an empty
+player or triggered a download.
+
+This was verified earlier with a range request that returned HTTP 206 and
+read as a pass. 206 only proves the asset supports range requests; it says
+nothing about whether the MIME type is playable. The check was measuring the
+wrong thing.
+
+Playback now reads site/videos/*.mp4, which Pages serves as video/mp4. The
+download link still points at the Release, where attachment disposition is
+the behaviour we actually want. 35.7 MB total against a 1 GB Pages limit.
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+Copilot-Session: c251d7c4-7369-4d0a-bc58-3a64ed7a6aab
