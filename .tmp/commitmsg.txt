@@ -1,24 +1,4 @@
-Serve playback copies from Pages, not from Release assets
-
-The gallery pointed <video src> at the GitHub Release asset. Release assets
-are served as:
-
-  Content-Type: application/octet-stream
-  Content-Disposition: attachment; filename=...
-  X-Content-Type-Options: nosniff
-
-No browser will play that inline. nosniff blocks MIME sniffing and
-octet-stream is not a playable video type, so every card opened an empty
-player or triggered a download.
-
-This was verified earlier with a range request that returned HTTP 206 and
-read as a pass. 206 only proves the asset supports range requests; it says
-nothing about whether the MIME type is playable. The check was measuring the
-wrong thing.
-
-Playback now reads site/videos/*.mp4, which Pages serves as video/mp4. The
-download link still points at the Release, where attachment disposition is
-the behaviour we actually want. 35.7 MB total against a 1 GB Pages limit.
+Document the two-copy rule and why 206 was a false pass
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 Copilot-Session: c251d7c4-7369-4d0a-bc58-3a64ed7a6aab

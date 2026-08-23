@@ -152,8 +152,30 @@ so every scene lands at a uniform 2.6 words/sec.
   build artifact.
 - **`.github/workflows/pages.yml`** &mdash; deploys `site/` to GitHub Pages.
 
-Rendered video is never committed. It ships as Release assets, which keeps the
-repository small and its history clean.
+Every video exists as **two copies**, and they are not interchangeable:
+
+| Copy | Location | Served as | Used for |
+| --- | --- | --- | --- |
+| Playback | `site/videos/*.mp4` (committed) | `video/mp4` | `<video>` in the gallery |
+| Distribution | Release assets (not committed) | `application/octet-stream` + `attachment` | the Download MP4 link |
+
+**A Release asset cannot be played in a `<video>` tag.** GitHub serves release
+downloads with `Content-Type: application/octet-stream`,
+`Content-Disposition: attachment` and `X-Content-Type-Options: nosniff`. The
+nosniff header forbids the browser from guessing a better type, and
+octet-stream is not playable, so the element fails silently or the browser
+downloads the file instead. That is correct behaviour for a download link and
+useless for playback.
+
+This project shipped that bug once. The check that missed it was a range
+request returning `206 Partial Content`, which was read as "streaming works."
+**A 206 only proves the server supports range requests.** It says nothing about
+whether the MIME type is playable. Verify playback by loading the page in a
+real browser and asserting `video.readyState >= 3` and that `currentTime`
+advances &mdash; not by reading response headers.
+
+The playback copies cost ~36 MB against a 1 GB Pages limit. Replace them on
+re-render rather than accumulating variants.
 
 **Publish release assets from a local render, not from CI.**
 `softprops/action-gh-release` deletes every existing asset before re-uploading;
@@ -161,20 +183,22 @@ one failed upload leaves the release incomplete. That happened on `v1.0.0` and
 silently dropped `fraction-reel-v3.mp4`. Upload explicitly instead:
 
 ```bash
-gh release upload v1.0.0 out/fraction-reel-v3.mp4 --clobber
+gh release upload v1.1.0 out/fraction-reel-v3.mp4 --clobber
 ```
 
-Release assets serve HTTP `206 Partial Content`, so the site can stream them
-directly into a `<video>` tag without downloading the whole file first.
+Note that `releaseTag` in `site/videos.json` is global &mdash; bumping it means
+**every** video's download link points at the new tag, so that release must
+carry all of them.
 
 ## Adding a new video
 
 1. Build scenes in `src/scenes-vN/`, reusing `components/`.
 2. Compose them in `src/FractionReelVN.tsx` with a `TransitionSeries`.
 3. Register the composition in `src/Root.tsx`.
-4. Add an entry to `site/videos.json`.
-5. Render locally (`npm run render`) and upload to the release:
-   `gh release upload <tag> out/<file>.mp4 --clobber`
+4. Add an entry to `site/videos.json` and render a poster into `site/posters/`.
+5. Render locally (`npm run render`), then place **both** copies:
+   - `cp out/<file>.mp4 site/videos/` and commit it &mdash; this is what plays.
+   - `gh release upload <tag> out/<file>.mp4 --clobber` &mdash; this is what downloads.
 
 ## Licence
 
